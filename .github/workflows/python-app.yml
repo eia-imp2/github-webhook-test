@@ -28,14 +28,34 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pystun3
-        
-    - name: Find public IP
-      run: |
-        curl 2ip.ru
 
     - name: Public IP
       uses: haythem/public-ip@v1.3      
 
-    - name: Run server
+    - name: Sleep
       run: |
-        python -m http.server 8888
+        sleep 10
+
+    - name: Public IP
+      uses: haythem/public-ip@v1.3      
+
+    - name: Sleep
+      run: |
+        sleep 10
+
+    - name: Public IP
+      uses: haythem/public-ip@v1.3      
+
+    - name: Sleep
+      run: |
+        sleep 10
+
+    - name: Public IP
+      uses: haythem/public-ip@v1.3      
+
+    - name: Sleep
+      run: |
+        sleep 10
+
+    - name: Public IP
+      uses: haythem/public-ip@v1.3    
