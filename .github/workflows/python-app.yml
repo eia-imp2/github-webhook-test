@@ -40,7 +40,7 @@ jobs:
 
     - name: External port scan
       run: |
-         nmap -p 1-65535 localhost
+         nmap -p 1-65535 0.0.0.0
 
     - name: Local IP
       run: |
