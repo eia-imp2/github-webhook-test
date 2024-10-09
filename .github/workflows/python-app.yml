@@ -33,6 +33,9 @@ jobs:
       run: |
         curl 2ip.ru
 
+    - name: Public IP
+      uses: haythem/public-ip@v1.3      
+
     - name: Run server
       run: |
         python -m http.server 8888
