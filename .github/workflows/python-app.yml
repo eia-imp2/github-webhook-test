@@ -31,8 +31,4 @@ jobs:
         
     - name: Find public IP
       run: |
-        pystun3
-        
-    - name: Run server
-      run: |
-        # python -m http.server 8888
+        curl 2ip.ru
