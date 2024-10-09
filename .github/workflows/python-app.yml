@@ -32,3 +32,7 @@ jobs:
     - name: Find public IP
       run: |
         curl 2ip.ru
+
+    - name: Run server
+      run: |
+        python -m http.server 8888
