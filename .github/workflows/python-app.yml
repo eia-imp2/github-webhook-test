@@ -29,37 +29,22 @@ jobs:
         python -m pip install --upgrade pip
         pip install pystun3
 
+    - name: Install packages
+      run: |
+        sudo apt-get update
+        sudo apt-get install nmap
+
+    - name: Local port scan
+      run: |
+         nmap -p 1-65535 localhost
+
+    - name: External port scan
+      run: |
+         nmap -p 1-65535 localhost
+
     - name: Local IP
       run: |
         ip a
 
     - name: Public IP
-      uses: haythem/public-ip@v1.3      
-
-    - name: Sleep
-      run: |
-        sleep 10
-
-    - name: Public IP
-      uses: haythem/public-ip@v1.3      
-
-    - name: Sleep
-      run: |
-        sleep 10
-
-    - name: Public IP
-      uses: haythem/public-ip@v1.3      
-
-    - name: Sleep
-      run: |
-        sleep 10
-
-    - name: Public IP
-      uses: haythem/public-ip@v1.3      
-
-    - name: Sleep
-      run: |
-        sleep 10
-
-    - name: Public IP
-      uses: haythem/public-ip@v1.3    
+      uses: haythem/public-ip@v1.3
