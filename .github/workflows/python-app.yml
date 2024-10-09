@@ -29,6 +29,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install pystun3
 
+    - name: Local IP
+      run: |
+        ip a
+
     - name: Public IP
       uses: haythem/public-ip@v1.3      
 
