@@ -26,13 +26,13 @@ jobs:
 
     - name: Run Python server
       run: |
-        python -m http.server 80 &
+        python -m http.server 8080 &
 
     - name: Check server
       run: |
-        curl http://localhost
+        curl http://localhost:8080
 
     - name: Run ngrok tunnel
       run: |
-        ngrok http --url=${{ vars.NGROK_STATIC_DOMAIN }} 80
+        ngrok http --url=${{ vars.NGROK_STATIC_DOMAIN }} 8080
         
