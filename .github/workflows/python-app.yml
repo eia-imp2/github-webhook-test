@@ -26,5 +26,5 @@ jobs:
 
     - name: Run ngrok tunnel
       run: |
-        ngrok http --url=${{ env.NGROK_STATIC_DOMAIN }} 80
+        ngrok http --url=${{ variable.NGROK_STATIC_DOMAIN }} 80
     
