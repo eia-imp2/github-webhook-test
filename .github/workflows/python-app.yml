@@ -11,8 +11,10 @@ permissions:
 
 jobs:
   build:
-    environment: Signalling Server
     runs-on: ubuntu-latest
+    environment: Signalling Server
+    env:
+      PORT: 8080
 
     steps:
     - uses: actions/checkout@v4
@@ -28,13 +30,14 @@ jobs:
 
     - name: Run Python server
       run: |
-        python -m http.server 8080 &
+        bun install
+        bun run index.ts &
 
     - name: Check server
       run: |
-        curl http://localhost:8080
+        curl "http://localhost:${PORT}"
 
     - name: Run ngrok tunnel
       run: |
-        ngrok http --url=${{ vars.NGROK_STATIC_DOMAIN }} 8080
+        ngrok http --url=${{ vars.NGROK_STATIC_DOMAIN }} ${PORT}
         
