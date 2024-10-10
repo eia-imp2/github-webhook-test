@@ -4,10 +4,7 @@
 name: Python application
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -19,37 +16,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
-        
-    - name: Install dependencies
+    - name: Install ngrok
       run: |
-        python -m pip install --upgrade pip
-        pip install pystun3
+        curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
 
-    - name: Install packages
+    - name: Setup ngrok
       run: |
-        sudo apt-get update
-        sudo apt-get install nmap
+        ngrok config add-authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
 
-    - name: Local port scan
+    - name: Run ngrok tunnel
       run: |
-         nmap -p 1-65535 localhost
-
-    - name: External port scan
-      run: |
-         nmap -p 1-65535 0.0.0.0
-
-    - name: Local IP
-      run: |
-        ip a
-
-    - name: Public IP
-      uses: haythem/public-ip@v1.3
-
-    # 1
-    - name: Sleep
-      run: |
-        sleep 1000
+        ngrok http --url=${{ env.NGROK_STATIC_DOMAIN }} 80
+    
