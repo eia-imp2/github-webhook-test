@@ -5,6 +5,9 @@ on:
     workflows: [Signaling server]
     types: [completed]
 
+permissions:
+  actions: write
+
 env:
   GH_TOKEN: ${{ github.token }}
   
