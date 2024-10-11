@@ -1,0 +1,9 @@
+name: Manually start signaling server
+
+on:
+  workflow_call:
+  
+jobs:
+  call-workflow:
+    uses: eia-imp2/webrtc-signaling-server/.github/workflows/signaling-server.yml@main
+

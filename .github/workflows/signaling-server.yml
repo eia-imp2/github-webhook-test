@@ -1,10 +1,7 @@
 name: Signaling server
 
 on:
-  workflow_dispatch:
-  workflow_run:
-    workflows: [Signaling server]
-    types: [completed]
+  workflow_call:
 
 permissions:
   contents: read
@@ -12,7 +9,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' && vars.ENABLE_AUTO_RESTART }}
     environment: Signalling Server
     env:
       PORT: 8080

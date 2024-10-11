@@ -1,0 +1,12 @@
+name: Restart signaling server
+
+on:
+  workflow_run:
+    workflows: [Signaling server]
+    types: [completed]
+  
+jobs:
+  call-workflow:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' && vars.ENABLE_AUTO_RESTART }}
+    uses: eia-imp2/webrtc-signaling-server/.github/workflows/signaling-server.yml@main
+
