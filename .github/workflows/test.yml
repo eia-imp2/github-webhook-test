@@ -8,7 +8,7 @@ on:
 jobs:
   echo-env:
     steps:
-      run: |
+      - run: |
         echo ${{ vars.ENABLE_AUTO_RESTART }}
         echo ${{ vars.ENABLE_AUTO_RESTART && "no auto restart" || "will auto restart" }}
         echo ${{ github.event.workflow_run.conclusion }}
