@@ -17,5 +17,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Dispatch workflow using GitHub CLI
-      - run: |
+        run: |
           gh workflow run signaling-server.yml --ref main
