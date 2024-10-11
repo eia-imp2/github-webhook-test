@@ -7,8 +7,15 @@ on:
   
 jobs:
   call-workflow:
-    environment: Signalling server
     if: ${{ github.event.workflow_run.conclusion != 'success' && fromJSON(vars.ENABLE_AUTO_RESTART) }}
-    uses: eia-imp2/webrtc-signaling-server/.github/workflows/signaling-server.yml@main
-    secrets: inherit
+    runs-on: ubuntu-latest
+    environment: Signalling server
 
+    steps:
+      - uses: sersoft-gmbh/setup-gh-cli-action@v1.0.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Dispatch workflow using GitHub CLI
+      - run: |
+          gh workflow run signaling-server.yml --ref main
