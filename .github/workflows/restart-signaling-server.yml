@@ -7,9 +7,9 @@ on:
   
 jobs:
   call-workflow:
-    if: ${{ github.event.workflow_run.conclusion != 'success' && vars.ENABLE_AUTO_RESTART == 'true' }}
     runs-on: ubuntu-latest
     environment: Signalling Server
+    # if: ${{ github.event.workflow_run.conclusion != 'success' && vars.ENABLE_AUTO_RESTART == 'true' }}
 
     steps:
       - uses: sersoft-gmbh/setup-gh-cli-action@v1.0.2
@@ -18,4 +18,5 @@ jobs:
 
       - name: Dispatch workflow using GitHub CLI
         run: |
-          gh workflow run signaling-server.yml --ref main
+          echo ${{ vars.ENABLE_AUTO_RESTART }}
+          # gh workflow run signaling-server.yml --ref main
