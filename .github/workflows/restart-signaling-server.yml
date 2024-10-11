@@ -4,6 +4,9 @@ on:
   workflow_run:
     workflows: [Signaling server]
     types: [completed]
+
+env:
+  GH_TOKEN: ${{ github.token }}
   
 jobs:
   call-workflow:
