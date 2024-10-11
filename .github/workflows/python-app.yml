@@ -1,10 +1,10 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
-name: Python application
+name: Signaling server
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: [Signaling server]
+    types: [completed]
 
 permissions:
   contents: read
@@ -12,6 +12,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' && vars.ENABLE_AUTO_RESTART }}
     environment: Signalling Server
     env:
       PORT: 8080
