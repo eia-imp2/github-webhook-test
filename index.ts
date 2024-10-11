@@ -23,6 +23,9 @@ const server = Bun.serve<{ authToken: string }>({
     },
     // this is called when a message is received
     async message(ws, message) {
+	  if (message == "banana") {
+		throw new Error()
+	  }
       console.log(`Received ${message}`);
       // send back a message
       ws.send(`You said: ${message}`);
