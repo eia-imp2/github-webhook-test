@@ -7,6 +7,7 @@ on:
   
 jobs:
   echo-env:
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo ${{ vars.ENABLE_AUTO_RESTART }}
