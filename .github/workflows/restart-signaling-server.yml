@@ -7,7 +7,7 @@ on:
   
 jobs:
   call-workflow:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' && vars.ENABLE_AUTO_RESTART }}
+    if: ${{ github.event.workflow_run.conclusion != 'success' && fromJSON(vars.ENABLE_AUTO_RESTART) }}
     uses: eia-imp2/webrtc-signaling-server/.github/workflows/signaling-server.yml@main
     secrets: inherit
 
