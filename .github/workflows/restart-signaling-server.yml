@@ -19,4 +19,5 @@ jobs:
       - name: Dispatch workflow using GitHub CLI
         run: |
           echo ${{ vars.ENABLE_AUTO_RESTART }}
+          echo ${{ github.event.workflow_run.conclusion }}
           # gh workflow run signaling-server.yml --ref main
